@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Easy Peasy at EC'26 — Rome, July 2026</title>
+<meta name="description" content="Easy Peasy at EC'26 — a workshop on elegant, teachable proofs and results in Economics & Computation, held at EC'26 in Rome, July 2026." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --fg: #1A1714;
+    --muted: #877F73;
+    --line: #E0D9CC;
+    --accent: #C9A227;
+    --accent-light: #F5EBC8;
+    --accent-dark: #7A5F0F;
+    --forest: #2B5540;
+    --card: #EFEBE2;
+    --max: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  strong { font-weight: 600; }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .mono {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+  }
+  .nav-links a {
+    font-size: 13.5px;
+    color: var(--muted);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--fg); }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 100px 0 88px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 8px;
+    background: var(--accent-light);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    border-radius: 999px;
+    margin-bottom: 44px;
+  }
+  .hero-badge .dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .hero-badge span {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-size: clamp(56px, 9vw, 120px);
+    line-height: 0.97;
+    letter-spacing: -0.038em;
+    margin: 0 0 20px;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-dark);
+  }
+
+  .hero-sub {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(18px, 2.2vw, 24px);
+    line-height: 1.45;
+    max-width: 680px;
+    color: #3A3229;
+    margin: 0 0 60px;
+  }
+
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 840px;
+  }
+  .meta-cell {
+    padding: 20px 24px;
+    border-right: 1px solid var(--line);
+  }
+  .meta-cell:last-child { border-right: none; }
+  .meta-cell .label { display: block; margin-bottom: 6px; }
+  .meta-cell .val {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  /* ─── DEADLINE ALERT ─── */
+  .alert {
+    margin: 56px 0 0;
+    padding: 20px 28px;
+    background: var(--accent-light);
+    border: 1.5px solid var(--accent);
+    border-radius: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    max-width: 840px;
+  }
+  .alert .icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+  .alert-text strong { color: var(--accent-dark); }
+  .alert-text { font-size: 15px; line-height: 1.55; }
+
+  /* ─── SECTIONS ─── */
+  section { border-top: 1px solid var(--line); }
+
+  .section-inner {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 56px;
+    padding: 88px 0;
+  }
+  .aside {
+    padding-top: 4px;
+  }
+  .aside .section-num {
+    display: block;
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 32px;
+  }
+  h2 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent-dark);
+  }
+
+  .prose p { margin: 0 0 1.1em; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ─── TOPICS ─── */
+  .topics-grid {
+    columns: 2;
+    column-gap: 40px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .topics-grid li {
+    padding: 7px 0 7px 20px;
+    font-size: 15px;
+    color: #3A3229;
+    border-bottom: 1px solid var(--line);
+    break-inside: avoid;
+    position: relative;
+  }
+  .topics-grid li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.7;
+  }
+
+  /* ─── CRITERIA CARDS ─── */
+  .criteria {
+    display: grid;
+    gap: 16px;
+  }
+  .crit-card {
+    padding: 24px 28px;
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .crit-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 19px;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .crit-card p { margin: 0; font-size: 15px; color: #3A3229; }
+
+  /* ─── SUBMISSION DETAILS ─── */
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .detail-item {
+    padding: 20px 24px;
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .detail-item .d-label { display: block; margin-bottom: 8px; }
+  .detail-item .d-val {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .detail-item p { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+
+  /* ─── DATES ─── */
+  .dates {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .dates li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .dates li:first-child { border-top: 1px solid var(--line); }
+  .dates .event {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .dates .date-val {
+    font-family: 'Geist Mono', monospace;
+    font-size: 13.5px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .dates li.urgent .event { color: var(--accent-dark); }
+  .dates li.urgent .date-val {
+    color: var(--accent-dark);
+    font-weight: 500;
+  }
+
+  /* ─── ORGANIZERS ─── */
+  .org-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .org-card {
+    padding: 28px;
+    background: var(--card);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .org-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .org-card .affil {
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .org-card a {
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--accent-dark);
+    word-break: break-all;
+  }
+  .org-card a:hover { text-decoration: underline; }
+
+  /* ─── PROGRAM COMMITTEE ─── */
+  .pc-placeholder {
+    padding: 48px;
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .pc-placeholder p {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted);
+    margin: 0 0 8px;
+  }
+  .pc-placeholder small {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .pc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .pc-member {
+    padding: 14px 18px;
+    background: var(--card);
+    border-radius: 8px;
+    border: 1px solid var(--line);
+  }
+  .pc-member .pc-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .pc-member .pc-inst {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ─── SUBMIT CTA ─── */
+  .submit-cta {
+    padding: 120px 0;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  .submit-cta h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(40px, 6.5vw, 78px);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 12px;
+  }
+  .submit-cta .sub-note {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0 0 40px;
+  }
+  .btn-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary {
+    background: var(--fg);
+    color: var(--bg);
+  }
+  .btn-primary:hover {
+    background: var(--forest);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--fg) 18%, transparent);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--fg);
+    border: 1.5px solid var(--line);
+  }
+  .btn-secondary:hover {
+    border-color: var(--fg);
+    transform: translateY(-2px);
+  }
+  .btn svg { flex-shrink: 0; transition: transform .2s; }
+  .btn:hover svg { transform: translateX(3px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 36px 0;
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer p { margin: 0; font-size: 13px; color: var(--muted); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .r1 { animation: rise .7s cubic-bezier(.2,.7,.2,1) .05s both; }
+  .r2 { animation: rise .7s cubic-bezier(.2,.7,.2,1) .15s both; }
+  .r3 { animation: rise .7s cubic-bezier(.2,.7,.2,1) .28s both; }
+  .r4 { animation: rise .7s cubic-bezier(.2,.7,.2,1) .42s both; }
+  .r5 { animation: rise .7s cubic-bezier(.2,.7,.2,1) .56s both; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .wrap { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 64px 0 60px; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .meta-cell:nth-child(2n) { border-right: none; }
+    .meta-cell:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .section-inner { grid-template-columns: 1fr; gap: 24px; padding: 60px 0; }
+    .topics-grid { columns: 1; }
+    .details-grid, .org-grid { grid-template-columns: 1fr; }
+    .dates li { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" stroke="#1A1714" stroke-width="1.3"/>
+        <circle cx="12" cy="12" r="6.5" fill="#C9A227" fill-opacity=".35" stroke="#1A1714" stroke-width="1"/>
+        <path d="M12 5.5V18.5M5.5 12H18.5M7.4 7.4l9.2 9.2M16.6 7.4 7.4 16.6" stroke="#1A1714" stroke-width=".9"/>
+      </svg>
+      Easy Peasy at EC'26
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#topics">Topics</a>
+      <a href="#criteria">Submission</a>
+      <a href="#dates">Dates</a>
+      <a href="#organizers">Organizers</a>
+      <a href="#pc">Program Committee</a>
+      <a href="#submit">Submit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-badge r1">
+      <span class="dot"></span>
+      <span>Workshop at EC'26 · Rome, Italy · July 2026</span>
+    </div>
+    <h1 class="r2">Easy Peasy<br><em>at EC.</em></h1>
+    <p class="hero-sub r3">
+      A workshop on proofs and results so elegant, surprising, or delightfully clean
+      that every AGT researcher should know them.
+    </p>
+    <div class="meta-strip r4">
+      <div class="meta-cell">
+        <span class="mono label">Conference</span>
+        <span class="val">EC'26 — ACM Economics & Computation</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mono label">Location</span>
+        <span class="val">Rome, Italy</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mono label">Submission deadline</span>
+        <span class="val">April 27, 2026 (AoE)</span>
+      </div>
+      <div class="meta-cell">
+        <span class="mono label">Notification</span>
+        <span class="val">May 25, 2026</span>
+      </div>
+    </div>
+
+    <div class="alert r5">
+      <span class="icon">📅</span>
+      <div class="alert-text">
+        <strong>Submission deadline approaching.</strong>
+        Papers are due <strong>April 27, 2026 (AoE)</strong> via EasyChair.
+        Dual submission to EC or other conferences is permitted.
+        There are no published proceedings — accepted papers will be posted online and indexed publicly.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-inner">
+      <div class="aside">
+        <span class="mono section-num">01 — About</span>
+      </div>
+      <div>
+        <div class="prose">
+          <p>
+            Easy Peasy at EC aims to incentivize new work, highlight existing work, and aggregate
+            proofs and ideas so surprising, illuminating, or delightfully clean that every AGT
+            researcher should know them.
+          </p>
+          <p>
+            In the spirit of Erdős's <em>Proofs from the Book</em> and the SOSA conference, we
+            seek results whose elegance reveals deeper structure — the kind of proof that makes
+            you put down your pen and think <em>"oh, that's the right way to see it."</em>
+          </p>
+          <p>
+            A result belongs here if a good researcher, on seeing it, wishes they had known it
+            sooner, or if it is so crisp and self-contained that you could drop it into a lecture
+            and have students walk away understanding exactly why it's true.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section id="topics">
+  <div class="wrap">
+    <div class="section-inner">
+      <div class="aside">
+        <span class="mono section-num">02 — Topics</span>
+      </div>
+      <div>
+        <h2>All areas of <em>EconCS</em> welcome.</h2>
+        <ul class="topics-grid">
+          <li>Agent-based modeling</li>
+          <li>Algorithmic fairness and data privacy</li>
+          <li>Auctions and pricing</li>
+          <li>Behavioral economics and bounded rationality</li>
+          <li>Blockchain and cryptocurrencies</li>
+          <li>Contract design</li>
+          <li>Crowdsourcing and information elicitation</li>
+          <li>Decision theory</li>
+          <li>Econometrics</li>
+          <li>Economic aspects of learning algorithms</li>
+          <li>Economic aspects of neural networks and LLMs</li>
+          <li>Equilibrium analysis, incl. price of anarchy</li>
+          <li>Equilibrium computation and complexity</li>
+          <li>Fair division</li>
+          <li>Industrial organization</li>
+          <li>Information design</li>
+          <li>Laboratory and field experiments</li>
+          <li>Market design and matching markets</li>
+          <li>Market equilibria</li>
+          <li>Mechanism design</li>
+          <li>Online algorithms</li>
+          <li>Online platforms and applications</li>
+          <li>Social good and ethics</li>
+          <li>Social choice and voting theory</li>
+          <li>Social networks and social learning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMISSION CRITERIA -->
+<section id="criteria">
+  <div class="wrap">
+    <div class="section-inner">
+      <div class="aside">
+        <span class="mono section-num">03 — Submission</span>
+      </div>
+      <div>
+        <h2>Submission <em>guidlines.</em></h2>
+        <div class="criteria">
+          <div class="prose">
+            <h3>Brief and self-contained</h3>
+            <p>
+              Submissions should contain only their elegant, simple result(s). The full result
+              must be presentable in a <strong>15-minute talk</strong>. Page limit: <strong>10 pages</strong>,
+              prepared specifically for this workshop.
+            </p>
+          </div>
+          <div class="prose">
+            <h3>New or previously published</h3>
+            <p>
+              We welcome both new and existing results. Examples: a new simple proof for a
+              well-known result (like the economic proof of KVV), a new elegant result (like the
+              single-sample geometric proof), or an elegant proof for a special case of a longer
+              paper. The only exclusion is results already canonical in course curricula or
+              folklore well-known to the community.
+            </p>
+          </div>
+          <div class="prose">
+            <h3>Prioritize newer and lesser-known results</h3>
+            <p>
+              All EconCS topics are encouraged, with priority given to newer, lesser-known,
+              or more significant results. Submissions will be reviewed by a mixed-seniority
+              program committee. The guiding philosophy: if a result is truly simple,
+              a junior PhD student should be able to understand it.
+            </p>
+          </div>
+          <div class="prose">
+            <h3>No proceedings — papers posted publicly</h3>
+            <p>
+              There will be no published proceedings. Accepted authors are required to post
+              their papers online (arXiv, SSRN, personal website, or equivalent). All accepted
+              papers will be linked via a public index as a community resource.
+              Dual submission to EC or any other conference is permitted.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+          <h2 style="font-size: 24px; margin-bottom: 20px;">Submission details</h2>
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="mono d-label">Platform</span>
+              <div class="d-val">EasyChair</div>
+              <p>Submissions managed through EasyChair. Link forthcoming.</p>
+            </div>
+            <div class="detail-item">
+              <span class="mono d-label">Page limit</span>
+              <div class="d-val">10 pages</div>
+              <p>Prepared specifically for this workshop — not a reprint of a longer paper.</p>
+            </div>
+            <div class="detail-item">
+              <span class="mono d-label">Talk format</span>
+              <div class="d-val">15-minute talk</div>
+              <p>The full result must fit within a 15-minute presentation slot.</p>
+            </div>
+            <div class="detail-item">
+              <span class="mono d-label">Dual submission</span>
+              <div class="d-val">Permitted</div>
+              <p>Dual submission to EC or any other venue is welcome.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPORTANT DATES -->
+<section id="dates">
+  <div class="wrap">
+    <div class="section-inner">
+      <div class="aside">
+        <span class="mono section-num">04 — Dates</span>
+      </div>
+      <div>
+        <h2><em>Important</em> dates.</h2>
+        <ul class="dates">
+          <li class="urgent">
+            <span class="event">Submission Deadline</span>
+            <span class="date-val">May 4, 2026 · AoE</span>
+          </li>
+          <li>
+            <span class="event">Notification of Acceptance</span>
+            <span class="date-val">May 24, 2026</span>
+          </li>
+          <li>
+            <span class="event">EC'26 Early Registration Deadline</span>
+            <span class="date-val">May 29, 2026</span>
+          </li>
+          <li>
+            <span class="event">Workshop at EC'26 · Rome</span>
+            <span class="date-val">July 2026</span>
+          </li>
+        </ul>
+        <p style="font-size:14px; color: var(--muted); margin-top: 20px; margin-bottom: 0;">
+          The submission deadline falls before the EC notification date. Notifications will be
+          sent early to allow authors to make travel arrangements and meet the EC early
+          registration deadline.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORGANIZERS -->
+<section id="organizers">
+  <div class="wrap">
+    <div class="section-inner">
+      <div class="aside">
+        <span class="mono section-num">05 — Organizers</span>
+      </div>
+      <div>
+        <h2>Organizers.</h2>
+        <div class="org-grid">
+          <div class="org-card">
+            <h3>Kira Goldner</h3>
+            <div class="affil">Boston University, USA</div>
+          </div>
+          <div class="org-card">
+            <h3>Taylor Lundy</h3>
+            <div class="affil">University of British Columbia, Canada</div>
+          </div>
+          <div class="org-card">
+            <h3>Divyarthi Mohan</h3>
+            <div class="affil">Columbia University, USA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM COMMITTEE -->
+<section id="pc">
+  <div class="wrap">
+    <div class="section-inner">
+      <div class="aside">
+        <span class="mono section-num">06 — Program Committee</span>
+      </div>
+      <div>
+        <h2>Program <em>committee.</em></h2>
+        <div class="pc-placeholder">
+          <p>To be announced.</p>
+          <small>The program committee will be listed here once confirmed.</small>
+        </div>
+        <!-- Uncomment and populate this grid when the PC is confirmed:
+        <div class="pc-grid">
+          <div class="pc-member">
+            <div class="pc-name">Name Here</div>
+            <div class="pc-inst">Institution</div>
+          </div>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBMIT CTA -->
+<div id="submit" class="submit-cta">
+  <div class="wrap">
+    <h2>Show us your<br>most elegant proof.</h2>
+    <p class="sub-note">Deadline: May 4, 2026 (AoE) · Submissions via EasyChair</p>
+    <div class="btn-row">
+      <a href="#" class="btn btn-primary">
+        Submit on EasyChair
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <p>Easy Peasy at EC'26 · Rome, Italy · July 2026</p>
+    <p>A workshop at the 27th ACM Conference on Economics & Computation</p>
+  </div>
+</footer>
+
+</body>
+</html>
