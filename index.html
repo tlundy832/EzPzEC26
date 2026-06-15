@@ -502,6 +502,45 @@
     .details-grid, .org-grid { grid-template-columns: 1fr; }
     .dates li { flex-direction: column; gap: 4px; }
   }
+
+  /* ─── PROGRAM ─── */
+  .program-talk {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.program-talk:first-child { border-top: 1px solid var(--line); }
+.program-num {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  width: 24px;
+}
+.program-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+.program-authors {
+  font-size: 14px;
+  color: var(--muted);
+}
+.program-break {
+  text-align: center;
+  padding: 20px 0;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--line);
+}
 </style>
 </head>
 <body>
@@ -519,6 +558,7 @@
     </div>
     <div class="nav-links">
       <a href="#about">About</a>
+      <a href="#program">Program</a>
       <a href="#topics">Topics</a>
       <a href="#criteria">Submission</a>
       <a href="#dates">Dates</a>
@@ -566,16 +606,16 @@
         <span class="val">Rome, Italy</span>
       </div>
       <div class="meta-cell">
-        <span class="mono label">Submission deadline</span>
-        <span class="val">May 4, 2026 (AoE)</span>
+        <span class="mono label">Date</span>
+        <span class="val">July 6, 2026</span>
       </div>
       <div class="meta-cell">
-        <span class="mono label">Notification</span>
-        <span class="val">May 24, 2026</span>
+        <span class="mono label">Time</span>
+        <span class="val">14:00 - 17:30</span>
       </div>
     </div>
 
-    <div class="alert r5">
+    <!-- <div class="alert r5">
       <span class="icon">📅</span>
       <div class="alert-text">
         <strong>Submission deadline approaching.</strong>
@@ -583,7 +623,7 @@
         Dual submission to EC or other conferences is permitted.
         There are no published proceedings — accepted papers will be posted online and indexed publicly.
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 
@@ -611,6 +651,118 @@
             sooner, or if it is so crisp and self-contained that you could drop it into a lecture
             and have students walk away understanding exactly why it's true.
           </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="wrap">
+    <div class="section-inner">
+      <div class="aside">
+        <span class="mono section-num">07 — Program</span>
+      </div>
+      <div>
+        <h2>Workshop <em>program.</em></h2>
+
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+
+          <!-- Talks 1–5 -->
+          <div class="program-talk">
+            <span class="program-num">01</span>
+            <div>
+              <div class="program-title">Calibeating Made Simple</div>
+              <div class="program-authors">Yurong Chen, Zhiyi Huang, Michael I. Jordan, Haipeng Luo</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">02</span>
+            <div>
+              <div class="program-title">Learning a Game by Paying the Agents</div>
+              <div class="program-authors">Brian Hu Zhang, Tao Lin, Yiling Chen, Tuomas Sandholm</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">03</span>
+            <div>
+              <div class="program-title">Why Fairness Objectives Collapse on the Budget Simplex</div>
+              <div class="program-authors">Meryem Essaidi</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">04</span>
+            <div>
+              <div class="program-title">Achieving Maximin Share and EFX/EF1 Guarantees Simultaneously</div>
+              <div class="program-authors">Hannaneh Akrami, Nidhi Rathi</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">05</span>
+            <div>
+              <div class="program-title">An Entropy Potential for Type-Composition Games</div>
+              <div class="program-authors">Morteza Alimi, Merlin de la Haye, Pascal Lenzner, Šimon Schierreich, Alexander Skopalik, Marcus Wunderlich</div>
+            </div>
+          </div>
+
+          <!-- Break -->
+          <div class="program-break">
+            <span>— Coffee Break —</span>
+            <div> 15:30 - 16:00</div>
+          </div>
+
+          <!-- Talks 6–10 -->
+          <div class="program-talk">
+            <span class="program-num">06</span>
+            <div>
+              <div class="program-title">A Geometric Analysis of Gains from Trade</div>
+              <div class="program-authors">Jason Hartline, Kangning Wang</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">07</span>
+            <div>
+              <div class="program-title">Bounded Best Buyers: Prophet Inequalities Revisited</div>
+              <div class="program-authors">Farbod Ekbatani, Rad Niazadeh, Pranav Nuti, Jan Vondrak</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">08</span>
+            <div>
+              <div class="program-title">Prophet Inequality from Samples</div>
+              <div class="program-authors">Tomer Ezra</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">09</span>
+            <div>
+              <div class="program-title">Magicians Don't Move: An Easy Peasy OCRS</div>
+              <div class="program-authors">Mohammad Reza Aminian, Rad Niazadeh, Pranav Nuti</div>
+            </div>
+          </div>
+
+          <div class="program-talk">
+            <span class="program-num">10</span>
+            <div>
+              <div class="program-title">A Match Made by Entropy</div>
+              <div class="program-authors">Mohammad Reza Aminian, Rad Niazadeh, Pranav Nuti</div>
+            </div>
+          </div>
+
+          <!-- Poster -->
+          <div class="program-break">
+            <span>— Poster Session —</span>
+            <div>17:30 - 18:30 </div>
+          </div>
+
         </div>
       </div>
     </div>
