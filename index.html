@@ -508,10 +508,10 @@
   display: flex;
   align-items: baseline;
   gap: 20px;
-  padding: 18px 0;
+  padding: 18px 10px;
   border-bottom: 1px solid var(--line);
 }
-.program-talk:first-child { border-top: 1px solid var(--line); }
+/* .program-talk:first-child { border-top: 1px solid var(--line); } */
 .program-num {
   font-family: 'Geist Mono', monospace;
   font-size: 12px;
@@ -554,6 +554,28 @@
   color: var(--forest);
   border-color: var(--forest);
 }
+.program-block {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.program-time {
+  width: 100px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--card);
+  padding: 16px;
+  text-align: center;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  line-height: 1.8;
+  border-right: 1px solid var(--line);
+}
+.program-talks { flex: 1; }
 </style>
 </head>
 <body>
@@ -680,116 +702,131 @@
       <div>
         <h2>Workshop <em>program.</em></h2>
 
-        <div style="display: flex; flex-direction: column; gap: 2px;">
+        <!-- <div style="display: flex; flex-direction: column; gap: 2px;"> -->
 
+        <div style="border-bottom: 1px solid var(--line);">
           <!-- Talks 1–5 -->
-          <div class="program-talk">
-            <span class="program-num">01</span>
-            <div>
-              <div class="program-title">Calibeating Made Simple <a href="#" target="_blank" class="paper-link">Paper ↗</a></div>
-              <div class="program-authors">Yurong Chen, Zhiyi Huang, Michael I. Jordan, Haipeng Luo</div>
-            </div>
-          </div>
-
-          <div class="program-talk">
-            <span class="program-num">02</span>
-            <div>
-              <div class="program-title">Learning a Game by Paying the Agents <a href="#" target="_blank" class="paper-link">Paper ↗</a></div>
-              <div class="program-authors">Brian Hu Zhang, Tao Lin, Yiling Chen, Tuomas Sandholm</div>
-            </div>
-          </div>
-
-          <div class="program-talk">
-            <span class="program-num">03</span>
-            <div>
-              <div class="program-title">Why Fairness Objectives Collapse on the Budget Simplex <a href="#" target="_blank" class="paper-link">Paper ↗</a></div>
-              <div class="program-authors">Meryem Essaidi</div>
-            </div>
-          </div>
-
-          <div class="program-talk">
-            <span class="program-num">04</span>
-            <div>
-              <div class="program-title">Achieving Maximin Share and EFX/EF1 Guarantees Simultaneously
-                <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+          <div class="program-block">
+            <div class="program-time">14:00<br>–<br>15:30</div>
+            <div class="program-talks">
+              <div class="program-talk">
+                <span class="program-num">01</span>
+                <div>
+                  <div class="program-title">Calibeating Made Simple <a href="#" target="_blank" class="paper-link">Paper ↗</a></div>
+                  <div class="program-authors">Yurong Chen, Zhiyi Huang, Michael I. Jordan, Haipeng Luo</div>
+                </div>
               </div>
-              <div class="program-authors">Hannaneh Akrami, Nidhi Rathi</div>
-            </div>
-          </div>
 
-          <div class="program-talk">
-            <span class="program-num">05</span>
-            <div>
-              <div class="program-title">An Entropy Potential for Type-Composition Games
-                <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+              <div class="program-talk">
+                <span class="program-num">02</span>
+                <div>
+                  <div class="program-title">Learning a Game by Paying the Agents <a href="#" target="_blank" class="paper-link">Paper ↗</a></div>
+                  <div class="program-authors">Brian Hu Zhang, Tao Lin, Yiling Chen, Tuomas Sandholm</div>
+                </div>
               </div>
-              <div class="program-authors">Morteza Alimi, Merlin de la Haye, Pascal Lenzner, Šimon Schierreich, Alexander Skopalik, Marcus Wunderlich</div>
-            </div>
-          </div>
 
-          <!-- Break -->
-          <div class="program-break">
-            <span>— Coffee Break —</span>
-            <div> 15:30 - 16:00</div>
-          </div>
-
-          <!-- Talks 6–10 -->
-          <div class="program-talk">
-            <span class="program-num">06</span>
-            <div>
-              <div class="program-title">A Geometric Analysis of Gains from Trade
-                <a href="https://arxiv.org/abs/2508.06469" target="_blank" class="paper-link">Paper ↗</a>
+              <div class="program-talk">
+                <span class="program-num">03</span>
+                <div>
+                  <div class="program-title">Why Fairness Objectives Collapse on the Budget Simplex <a href="#" target="_blank" class="paper-link">Paper ↗</a></div>
+                  <div class="program-authors">Meryem Essaidi</div>
+                </div>
               </div>
-              <div class="program-authors">Jason Hartline, Kangning Wang</div>
-            </div>
-          </div>
 
-          <div class="program-talk">
-            <span class="program-num">07</span>
-            <div>
-              <div class="program-title">Bounded Best Buyers: Prophet Inequalities Revisited
-                <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+              <div class="program-talk">
+                <span class="program-num">04</span>
+                <div>
+                  <div class="program-title">Achieving Maximin Share and EFX/EF1 Guarantees Simultaneously
+                    <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+                  </div>
+                  <div class="program-authors">Hannaneh Akrami, Nidhi Rathi</div>
+                </div>
               </div>
-              <div class="program-authors">Farbod Ekbatani, Rad Niazadeh, Pranav Nuti, Jan Vondrak</div>
-            </div>
-          </div>
 
-          <div class="program-talk">
-            <span class="program-num">08</span>
-            <div>
-              <div class="program-title">Prophet Inequality from Samples
-                <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+              <div class="program-talk">
+                <span class="program-num">05</span>
+                <div>
+                  <div class="program-title">An Entropy Potential for Type-Composition Games
+                    <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+                  </div>
+                  <div class="program-authors">Morteza Alimi, Merlin de la Haye, Pascal Lenzner, Šimon Schierreich, Alexander Skopalik, Marcus Wunderlich</div>
+                </div>
               </div>
-              <div class="program-authors">Tomer Ezra</div>
             </div>
           </div>
-
-          <div class="program-talk">
-            <span class="program-num">09</span>
-            <div>
-              <div class="program-title">Magicians Don't Move: An Easy Peasy OCRS
-                <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+        
+            <!-- Break -->
+            <div class="program-block" style="background: color-mix(in srgb, var(--accent) 8%, var(--bg));">
+              <div class="program-time" style="background: color-mix(in srgb, var(--accent) 14%, var(--bg));">15:30<br>–<br>16:00</div>
+              <div class="program-talks" style="display: flex; align-items: center; padding: 0 24px;">
+                <span class="mono">Coffee Break</span>
               </div>
-              <div class="program-authors">Mohammad Reza Aminian, Rad Niazadeh, Pranav Nuti</div>
             </div>
-          </div>
 
-          <div class="program-talk">
-            <span class="program-num">10</span>
-            <div>
-              <div class="program-title">A Match Made by Entropy
-                <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+            <!-- Talks 6–10 -->
+            <div class="program-block">
+            <div class="program-time">16:00<br>–<br>17:30</div>
+            <div class="program-talks">
+            <div class="program-talk">
+              <span class="program-num">06</span>
+              <div>
+                <div class="program-title">A Geometric Analysis of Gains from Trade
+                  <a href="https://arxiv.org/abs/2508.06469" target="_blank" class="paper-link">Paper ↗</a>
+                </div>
+                <div class="program-authors">Jason Hartline, Kangning Wang</div>
               </div>
-              <div class="program-authors">Mohammad Reza Aminian, Rad Niazadeh, Pranav Nuti</div>
             </div>
-          </div>
 
-          <!-- Poster -->
-          <div class="program-break">
-            <span>— Poster Session —</span>
-            <div>17:30 - 18:30 </div>
-          </div>
+            <div class="program-talk">
+              <span class="program-num">07</span>
+              <div>
+                <div class="program-title">Bounded Best Buyers: Prophet Inequalities Revisited
+                  <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+                </div>
+                <div class="program-authors">Farbod Ekbatani, Rad Niazadeh, Pranav Nuti, Jan Vondrak</div>
+              </div>
+            </div>
 
+            <div class="program-talk">
+              <span class="program-num">08</span>
+              <div>
+                <div class="program-title">Prophet Inequality from Samples
+                  <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+                </div>
+                <div class="program-authors">Tomer Ezra</div>
+              </div>
+            </div>
+
+            <div class="program-talk">
+              <span class="program-num">09</span>
+              <div>
+                <div class="program-title">Magicians Don't Move: An Easy Peasy OCRS
+                  <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+                </div>
+                <div class="program-authors">Mohammad Reza Aminian, Rad Niazadeh, Pranav Nuti</div>
+              </div>
+            </div>
+
+            <div class="program-talk">
+              <span class="program-num">10</span>
+              <div>
+                <div class="program-title">A Match Made by Entropy
+                  <a href="#" target="_blank" class="paper-link">Paper ↗</a>
+                </div>
+                <div class="program-authors">Mohammad Reza Aminian, Rad Niazadeh, Pranav Nuti</div>
+              </div>
+            </div>
+            </div>
+            </div>
+
+            <!-- Poster -->
+            <div class="program-block" style="background: color-mix(in srgb, var(--accent) 8%, var(--bg));">
+              <div class="program-time" style="background: color-mix(in srgb, var(--accent) 14%, var(--bg));">17:30<br>–<br>18:30</div>
+              <div class="program-talks" style="display: flex; align-items: center; padding: 0 24px;">
+                <span class="mono">Poster Session</span>
+              </div>
+            </div>
+        
         </div>
       </div>
     </div>
