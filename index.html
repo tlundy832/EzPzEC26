@@ -186,6 +186,16 @@
   }
   .alert-text strong { color: var(--accent-dark); }
   .alert-text { font-size: 15px; line-height: 1.55; }
+  .alert a {
+  color: var(--accent-dark);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  transition: color .2s, border-color .2s;
+}
+.alert a:hover {
+  color: var(--forest);
+  border-color: var(--forest);
+}
 
   /* ─── SECTIONS ─── */
   section { border-top: 1px solid var(--line); }
